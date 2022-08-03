@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { styled } from '@mui/material/styles';
 
 const SquareCanvas = styled('canvas')`
@@ -12,16 +12,18 @@ const Square = styled('div')`
   height: 50px;
   width: 50px;
 `;
-function DropThePuzzle() {
-  const MakeSquare_ = new MakeSquare(3, 4);
-  const cnavasRef  = useRef<HTMLCanvasElement>(null);
+const DropThePuzzle: React.FC = () => {
+  const canvasRef: RefObject<HTMLCanvasElement> = useRef<HTMLCanvasElement>(null);
 
-  return (
-    <SquareCanvas>
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if(canvas) {
+      const ctx = canvas.getContext('2d');
+    }    
+  });
 
-    </SquareCanvas>
-  );
-}
+  return <canvas ref={canvasRef} />;
+};
 
 class MakeSquare{ 
   constructor(x: number = 10, y: number = 10)
